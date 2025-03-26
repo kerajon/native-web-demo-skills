@@ -129,10 +129,7 @@
         <h2>No Code Website Builder</h2>
         <div class="description">I worked on early stage of this project</div>
         <div class="video-wrapper">
-          <video height="200" autoplay muted loop>
-            <source src="website_builder.mp4"
-                    type="video/mp4">
-          </video>
+          <video height="200"  muted loop></video>
 
           <div class="cover-btn">
             <span class="fullscreen-btn">
@@ -148,10 +145,7 @@
         <h2>Highp <span class="no-wrap">Professional Video Presence App</span></h2>
         <div class="description">Videoconference application for Doctors and Medical Professionals. There were also other FrontEnd and BackEnd Applications I have been working on for this company.</div>
         <div class="video-wrapper">
-          <video height="200" autoplay muted loop>
-            <source src="Highp_Professional_Video_Presence_app.mp4"
-                    type="video/mp4">
-          </video>
+          <video height="200"  muted loop></video>
 
           <div class="cover-btn">
             <span class="fullscreen-btn">
@@ -167,10 +161,7 @@
         <h2><span class="no-wrap">Leasing Application</span> and <span class="no-wrap">Libraries for e-commerce</span></h2>
         <div class="description">I have been working on other FrontEnd and BackEnd Applications for this company which I can not show.</div>
         <div class="video-wrapper">
-          <video height="200" autoplay muted loop>
-            <source src="apps_and_libraries_for_leasing.mp4"
-                    type="video/mp4">
-          </video>
+          <video height="200"  muted loop></video>
 
           <div class="cover-btn">
             <span class="fullscreen-btn">
@@ -186,10 +177,7 @@
         <h2><span class="no-wrap">Application for Lawyers</span> <span class="no-wrap">and custom Libraries</span> <span class="no-wrap">and custom Frameworks</span></h2>
         <div class="description">I have been working on other FrontEnd and BackEnd Applications for this company which I can not show.</div>
         <div class="video-wrapper">
-          <video height="200" autoplay muted loop>
-            <source src="VitalLaw_fomerly_Cheetah_by_Wolters_Kluwer.webm"
-                    type="video/webm">
-          </video>
+          <video height="200"  muted loop></video>
 
           <div class="cover-btn">
             <span class="fullscreen-btn">
@@ -206,10 +194,20 @@
 
   <script>
     (() => {
-      for (const cartItemElem of Array.from(document.querySelector('.portfolio-container').children)) {
-        const cart = getBtnAndVideo(cartItemElem);
+      const cartHtmlElements = Array.from(document.querySelector('.portfolio-container').children)
+      const carts = [
+        { src: 'website_builder.mp4', type: 'video/mp4', ref: cartHtmlElements[0] },
+        { src: 'Highp_Professional_Video_Presence_app.mp4', type: 'video/mp4', ref: cartHtmlElements[1] },
+        { src: 'apps_and_libraries_for_leasing.mp4', type: 'video/mp4', ref: cartHtmlElements[2] },
+        { src: 'VitalLaw_fomerly_Cheetah_by_Wolters_Kluwer.webm', type: 'video/webm', ref: cartHtmlElements[3] },
+      ];
+
+      const videoCarts = [];
+      for (const cartItem of carts) {
+        const cart = getBtnAndVideo(cartItem);
         const btnController = btnControllerFactory(cart.btn);
         btnController.setLoadingState();
+        videoCarts.push(cart);
 
         cart.btn.addEventListener("click", function () {
           if (btnController.isLoading) {
@@ -227,6 +225,12 @@
         });
       }
 
+      runPromisesSequentially(videoCarts.map(function (cart) {
+        return cart.startLoading.bind(cart);
+      })).then(function () {
+        console.log('All videos started loading.')
+      });
+
       let lastFullScreenElement;
       document.addEventListener("fullscreenchange", function () {
         lastFullScreenElement = lastFullScreenElement || document.fullscreenElement;
@@ -237,12 +241,38 @@
         lastFullScreenElement.removeAttribute("controls");
       });
 
+      function runPromisesSequentially(functions) {
+        return functions.reduce((promiseChain, currentFunction) => {
+          return promiseChain.then((results) => {
+            return currentFunction().then((result) => {
+              results.push(result);
+              return results; // Return the accumulated results
+            });
+          });
+        }, Promise.resolve([])); // Start with a resolved promise
+      }
+
       function getBtnAndVideo(cart) {
-        const video = cart.querySelector('video');
-        const btn = cart.querySelector('.cover-btn');
+        const video = cart.ref.querySelector('video');
+        const btn = cart.ref.querySelector('.cover-btn');
         return {
           video,
           btn,
+          startLoading() {
+            return new Promise(function (resolve) {
+              video.addEventListener('loadeddata', handler);
+
+              const sourceElem = document.createElement('source');
+              sourceElem.setAttribute('src', cart.src);
+              sourceElem.setAttribute('type', cart.type);
+              video.appendChild(sourceElem);
+
+              function handler() {
+                resolve();
+                video.removeEventListener('loadeddata', handler);
+              }
+            })
+          }
         }
       }
 
