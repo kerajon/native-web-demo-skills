@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      background-color: #eeeeee;
+      user-select: none;
+
+      font-family: "Exo 2", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 700;
+      font-style: normal;
+    }
+    .main-container {
+      max-width: 700px;
+      padding: 8px;
+    }
+
+    .main-container h1 {
+      margin-bottom: 50px;
+    }
+
+    .portfolio-item {
+      border-radius: 16px;
+      background-color: white;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      position: relative;
+      padding: 16px;
+      margin-bottom: 24px;
+      box-sizing: border-box;
+      transition: all 300ms ease-in-out;
+    }
+    .portfolio-item:hover {
+      transform: scale(1.02);
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    }
+    .portfolio-item:hover .cover-btn {
+      border: 4px solid #ccc;
+    }
+    .portfolio-item video {
+      height: auto;
+      width: 100%;
+      border-radius: inherit;
+    }
+    .portfolio-item .description {
+      margin-bottom: 24px;
+    }
+    .portfolio-item h2 {
+      margin: 8px 0 24px 0;
+    }
+    .video-wrapper {
+      position: relative;
+      border-radius: 16px;
+    }
+
+    .cover-btn {
+      position: absolute;
+      inset: 0;
+      box-sizing: border-box;
+      border: 4px solid transparent;
+      cursor: pointer;
+      border-radius: inherit;
+      background-color: rgba(204, 204, 204, 0.5);
+      transition: all 500ms;
+    }
+    span.fullscreen-btn {
+      border-radius: 50%;
+      background-color: rgba(204, 204, 204, 0.5);
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      user-select: none;
+      border: 2px solid #ccc;
+      transition: all 200ms;
+    }
+    .cover-btn:hover {
+      background-color: rgba(204, 204, 204, 0.1);
+    }
+    .cover-btn:hover span.fullscreen-btn {
+      background-color: rgba(204, 204, 204, 1);
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+    span.fullscreen-btn svg {
+      fill: #5f5f5f;
+    }
+    .cover-btn.loading svg.fullscreen {
+      display: none;
+    }
+    .cover-btn.loading svg.downloading {
+      display: block;
+    }
+    .cover-btn.active svg.fullscreen {
+      display: block;
+    }
+    .cover-btn.active svg.downloading {
+      display: none;
+    }
+
+    .no-wrap {
+      white-space: nowrap;
+    }
+  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="main-container">
+
+    <h1><span class="no-wrap">Some of Projects</span> <span class="no-wrap">I worked on</span></h1>
+
+    <div class="portfolio-container">
+      <div class="portfolio-item">
+        <h2>No Code Website Builder</h2>
+        <div class="description">I worked on early stage of this project</div>
+        <div class="video-wrapper">
+          <video height="200" autoplay muted loop>
+            <source src="website_builder.mp4"
+                    type="video/mp4">
+          </video>
+
+          <div class="cover-btn">
+            <span class="fullscreen-btn">
+              <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
+
+              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <h2>Highp <span class="no-wrap">Professional Video Presence App</span></h2>
+        <div class="description">Videoconference application for Doctors and Medical Professionals. There were also other FrontEnd and BackEnd Applications I have been working on for this company.</div>
+        <div class="video-wrapper">
+          <video height="200" autoplay muted loop>
+            <source src="Highp_Professional_Video_Presence_app.mp4"
+                    type="video/mp4">
+          </video>
+
+          <div class="cover-btn">
+            <span class="fullscreen-btn">
+              <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
+
+              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <h2><span class="no-wrap">Leasing Application</span> and <span class="no-wrap">Libraries for e-commerce</span></h2>
+        <div class="description">I have been working on other FrontEnd and BackEnd Applications for this company which I can not show.</div>
+        <div class="video-wrapper">
+          <video height="200" autoplay muted loop>
+            <source src="apps_and_libraries_for_leasing.mp4"
+                    type="video/mp4">
+          </video>
+
+          <div class="cover-btn">
+            <span class="fullscreen-btn">
+              <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
+
+              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="portfolio-item">
+        <h2><span class="no-wrap">Application for Lawyers</span> <span class="no-wrap">and custom Libraries</span> <span class="no-wrap">and custom Frameworks</span></h2>
+        <div class="description">I have been working on other FrontEnd and BackEnd Applications for this company which I can not show.</div>
+        <div class="video-wrapper">
+          <video height="200" autoplay muted loop>
+            <source src="VitalLaw_fomerly_Cheetah_by_Wolters_Kluwer.webm"
+                    type="video/webm">
+          </video>
+
+          <div class="cover-btn">
+            <span class="fullscreen-btn">
+              <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
+
+              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    (() => {
+      for (const cartItemElem of Array.from(document.querySelector('.portfolio-container').children)) {
+        const cart = getBtnAndVideo(cartItemElem);
+        const btnController = btnControllerFactory(cart.btn);
+        btnController.setLoadingState();
+
+        cart.btn.addEventListener("click", function () {
+          if (btnController.isLoading) {
+            return;
+          }
+          if (cart.video.webkitSupportsFullscreen) {
+            cart.video.webkitEnterFullscreen();
+            return;
+          }
+          cart.video.requestFullscreen();
+        });
+        cart.video.addEventListener('loadeddata', function () {
+          btnController.setActiveState();
+          cart.video.play();
+        });
+      }
+
+      let lastFullScreenElement;
+      document.addEventListener("fullscreenchange", function () {
+        lastFullScreenElement = lastFullScreenElement || document.fullscreenElement;
+        if (document.fullscreenElement) {
+          document.fullscreenElement.setAttribute("controls", true);
+          return;
+        }
+        lastFullScreenElement.removeAttribute("controls");
+      });
+
+      function getBtnAndVideo(cart) {
+        const video = cart.querySelector('video');
+        const btn = cart.querySelector('.cover-btn');
+        return {
+          video,
+          btn,
+        }
+      }
+
+      function btnControllerFactory(btn) {
+        return {
+          isActive: false,
+          isLoading: false,
+          setLoadingState() {
+            this.isActive = false;
+            this.isLoading = !this.isActive;
+            btn.classList.add('loading');
+            btn.classList.remove('active');
+          },
+          setActiveState() {
+            this.isActive = true;
+            this.isLoading = !this.isActive;
+            btn.classList.remove('loading');
+            btn.classList.add('active');
+          }
+        };
+      }
+    })();
+  </script>
+</body>
+</html>

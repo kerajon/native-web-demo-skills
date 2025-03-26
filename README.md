@@ -9,4 +9,5 @@ This is a way to present my skills for future partners.
 I hope you have a good day.
 
 Demo list:  
-- [smokes e-commerce cart](https://codinglab.pl/video-portfolio/)
+- [smokes e-commerce cart](https://codinglab.pl/native-web-demo-skills/smokes-e-commerce-cart/)
+- [video portfolio site](https://codinglab.pl/video-portfolio/)
