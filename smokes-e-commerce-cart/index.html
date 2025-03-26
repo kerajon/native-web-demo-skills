@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>demo e-shop card</title>
+  <style>
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .shop-content {
+      font-size: 16px;
+      padding: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .shop-content .product-card {
+      box-sizing: border-box;
+      border-radius: 14px;
+      max-width: 700px;
+      padding: 16px;
+      box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+      position: relative;
+    }
+    .presentation-image {
+      width: 100%;
+    }
+    .presentation-image-container {
+      position: relative;
+    }
+
+    /* Quick introduction */
+    .quick-introduction .rating {
+      display: flex;
+      gap: 8px;
+    }
+    .quick-introduction h1 {
+      margin: 4px 0;
+      text-shadow: 2px 2px 2px rgba(140, 140, 140, 0.47);
+    }
+    .quick-introduction .sub-class {
+      font-size: .8rem;
+      color: #7b7b7b;
+    }
+
+    /* Short description */
+    .short-description {
+      padding: 8px 0;
+    }
+
+    /* Quick info */
+    .quick-info {
+      font-size: 0.9rem;
+      color: #7b7b7b;
+    }
+    .quick-info-label {
+      width: 90px;
+    }
+
+    /* Price and action */
+    .price-and-action {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding: 8px 0;
+      user-select: none;
+    }
+    .price-and-action .spacer {
+      flex-grow: 1;
+    }
+    .price-and-action .price {
+      display: flex;
+      align-items: start;
+      gap: 2px;
+      text-shadow: 2px 2px 2px rgba(140, 140, 140, 0.47);
+    }
+    .price-and-action .price .dollars {
+      font-size: 2rem;
+    }
+    .price-and-action .price .cents {
+      font-size: 1.2rem;
+      line-height: 2.5rem;
+    }
+
+    /* Quantity */
+    .quantity {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .quantity .quantity-value {
+      width: 16px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .quantity .quantity-btn {
+      cursor: pointer;
+      color: #3d3d3d;
+      user-select: none;
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background-color: #cccccc;
+      border: 2px solid #e3e3e3;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+      transition: all 200ms;
+    }
+    .quantity .quantity-btn:not(.disabled):hover {
+      transform: scale(1.02);
+      box-shadow: rgba(60, 64, 67, 0.4) 0px 1px 2px 0px, rgba(60, 64, 67, 0.35) 0px 1px 3px 1px;
+    }
+    .quantity .quantity-btn.disabled {
+      box-shadow: none;
+      background-color: #b2b2b2;
+      border: 2px solid #e5e5e5;
+      color: #919191;
+      pointer-events: none;
+    }
+
+    /* Rating */
+    .rating svg {
+      cursor: pointer;
+    }
+    .rating svg:hover {
+      fill: darkorange;
+    }
+
+    /* Buttons */
+    .add-to-card-btn.pc {
+      display: none;
+    }
+    .add-to-card-btn {
+      border: 2px solid #ccc;
+      height: 40px;
+      box-sizing: border-box;
+      cursor: pointer;
+      background: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+      user-select: none;
+    }
+    .add-to-card-btn:hover {
+      transform: scale(1.02);
+      box-shadow: rgba(0, 0, 0, 0.29) 0px 10px 20px, rgba(0, 0, 0, 0.43) 0px 6px 6px;
+    }
+    .add-to-card-btn.mobile {
+      border-radius: 50%;
+      width: 40px;
+      padding: 8px;
+    }
+    .add-to-card-btn.pc {
+      border-radius: 25px;
+      color: white;
+      padding: 8px 12px;
+    }
+    .add-to-card-btn.pc svg {
+      padding-left: 4px;
+    }
+
+    /* For PC - start */
+    @media screen and (min-width: 600px) {
+      .add-to-card-btn.pc {
+        display: flex;
+      }
+      .add-to-card-btn.mobile {
+        display: none;
+      }
+    }
+    /* For PC - end */
+
+    #smoke {
+      position: absolute;
+      z-index: 1;
+    }
+
+    /* Fonts */
+    .poppins-extralight {
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      font-style: normal;
+    }
+
+    .poppins-regular {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .poppins-bold {
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .poppins-extralight-italic {
+      font-family: "Poppins", sans-serif;
+      font-weight: 200;
+      font-style: italic;
+    }
+
+    .poppins-regular-italic {
+      font-family: "Poppins", sans-serif;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    .poppins-bold-italic {
+      font-family: "Poppins", sans-serif;
+      font-weight: 700;
+      font-style: italic;
+    }
+  </style>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;0,700;1,200;1,400;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="shop-content">
+
+    <!--  Product card  -->
+    <div class="card-container poppins-extralight">
+
+      <div class="product-card">
+        <div class="presentation-image-container">
+          <canvas id="smoke"></canvas>
+          <img class="presentation-image" src="hotbox-elite-Baja-Splash-1.jpg" alt="HotBox Elite Baja Splash">
+        </div>
+        <div class="quick-introduction">
+          <div class="sub-class poppins-regular">
+            Baja Splash
+          </div>
+          <h1 class="poppins-bold">HotBox Elite 50K</h1>
+          <div class="rating">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="m354-287 126-76 126 77-33-144 111-96-146-13-58-136-58 135-146 13 111 97-33 143ZM233-120l65-281L80-590l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Zm247-350Z"/></svg>
+          </div>
+        </div>
+        <div class="short-description">
+          Experience the bliss of premium candles and unique spray selections. Join us in the journey – explore franchise opportunities and employment possibilities. Elevate every moment with Higher Up Smoke Shop.
+        </div>
+        <div class="quick-info">
+          <table>
+            <tr>
+              <td class="quick-info-label">Weight</td>
+              <td class="quick-info-value poppins-regular">2.74 oz</td>
+            </tr>
+            <tr>
+              <td class="quick-info-label">Shipping</td>
+              <td class="quick-info-value poppins-regular">4 days</td>
+            </tr>
+            <tr>
+              <td class="quick-info-label">Category</td>
+              <td class="quick-info-value poppins-regular">Nicotine Products</td>
+            </tr>
+          </table>
+        </div>
+        <div class="price-and-action">
+          <span class="price poppins-bold-italic">
+            <span class="dollars">$22</span>
+            <span class="cents">99</span>
+          </span>
+          <span class="spacer"></span>
+          <span class="quantity">
+            <span class="quantity-btn poppins-bold">-</span>
+            <span  class="quantity-value poppins-bold">1</span>
+            <span class="quantity-btn poppins-bold">+</span>
+          </span>
+          <span class="spacer"></span>
+          <span class="call-to-action">
+            <span class="add-to-card-btn mobile">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+            </span>
+
+            <span class="add-to-card-btn poppins-regular pc">
+              <span>ADD TO CART</span>
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
+            </span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="smoke.js"></script>
+
+  <script>
+    (() => {
+
+      let smokeMachine = function () {};
+      createSmokeMachine(document.querySelector('.presentation-image-container')).then((_smokeMachine) => {
+        smokeMachine = _smokeMachine;
+        smokeMachine();
+      });
+      const quantity = document.querySelector('.quantity');
+      const quantityValueElem = quantity.querySelector('.quantity-value');
+      const buttons = quantity.querySelectorAll('.quantity-btn');
+      const minusQuantityBtn = buttons[0];
+      const addQuantityBtn = buttons[1];
+
+      const minQuantity = 1;
+      const maxQuantity = 16;
+      let currentQuantity = parseInt(quantityValueElem.innerText, 10);
+
+      init();
+
+      minusQuantityBtn.addEventListener('click', function () {
+        updateStateOfButtons();
+        currentQuantity -= 1;
+        updateQuantityValue(currentQuantity);
+
+        if (currentQuantity === minQuantity) {
+          markBtnAsDisabled(minusQuantityBtn);
+        }
+
+        smokeMachine();
+      });
+      addQuantityBtn.addEventListener('click', function () {
+        updateStateOfButtons();
+        currentQuantity += 1;
+        updateQuantityValue(currentQuantity);
+
+        if (currentQuantity === maxQuantity) {
+          markBtnAsDisabled(addQuantityBtn);
+        }
+
+        smokeMachine();
+      });
+
+      function init() {
+        if (currentQuantity === 1) {
+          markBtnAsDisabled(minusQuantityBtn);
+        }
+        if (maxQuantity === 9) {
+          markBtnAsDisabled(addQuantityBtn);
+        }
+      }
+
+      function createSmokeMachine(imageContainer) {
+        return new Promise((resolve) => {
+          if (imgLoaded(document.querySelector('.presentation-image'))) {
+            resolve(
+              buildSmokeMachine(imageContainer));
+            return;
+          }
+          document.querySelector('.presentation-image').addEventListener('load', () => {
+            console.log('image loaded');
+            resolve(
+              buildSmokeMachine(imageContainer));
+          });
+        });
+
+        function imgLoaded(imgElement) {
+          return imgElement.complete && imgElement.naturalHeight !== 0;
+        }
+      }
+
+      function updateStateOfButtons() {
+        markBtnAsActive(minusQuantityBtn);
+        markBtnAsActive(addQuantityBtn);
+      }
+
+      function isBtnDisabled(btn) {
+        return btn.classList.includes('disabled');
+      }
+      function updateQuantityValue(value) {
+        requestAnimationFrame(function () {
+          quantityValueElem.innerText = value;
+        })
+      }
+      function markBtnAsDisabled(btn) {
+        btn.classList.add('disabled');
+      }
+      function markBtnAsActive(btn) {
+        btn.classList.remove('disabled');
+      }
+
+      function buildSmokeMachine(imageContainer) {
+        var canvas = document.getElementById('smoke')
+        var ctx = canvas.getContext('2d')
+        canvas.width = imageContainer.offsetWidth;
+        canvas.height = imageContainer.offsetHeight;
+
+        let x = Math.round(imageContainer.offsetWidth / 3);
+        let y = Math.round(imageContainer.offsetHeight / 8);
+
+        window.addEventListener('resize', () => {
+          canvas.width = imageContainer.offsetWidth;
+          canvas.height = imageContainer.offsetHeight;
+
+          x = Math.round(imageContainer.offsetWidth / 3);
+          y = Math.round(imageContainer.offsetHeight / 8);
+        });
+
+        const smoke = SmokeMachine(ctx, [115,192,28])
+
+        return function _smoke () {
+          setTimeout(function(){
+
+            smoke.stop() // stop animating
+
+            smoke.addSmoke(x,y,100)
+
+            for(let i=0;i<10;i++){
+              smoke.step(10) // pretend 10 ms pass and rerender
+            }
+
+            setTimeout(function(){
+              smoke.start()
+            },10)
+
+          },10)
+        }
+      }
+    })()
+  </script>
+</body>
+</html>
