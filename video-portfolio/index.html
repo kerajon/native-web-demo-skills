@@ -375,6 +375,7 @@
               eventBus.emit('video_loading', cart.no);
 
               video.addEventListener('canplaythrough', handler);
+              video.addEventListener('error', error);
 
               const sourceElem = document.createElement('source');
               sourceElem.setAttribute('src', cart.src);
@@ -385,6 +386,14 @@
                 resolve();
                 eventBus.emit('video_loaded', cart.no);
                 video.removeEventListener('canplaythrough', handler);
+                video.removeEventListener('error', error);
+              }
+              /** Simple error handling - just go on */
+              function error() {
+                resolve();
+                eventBus.emit('video_loaded', cart.no);
+                video.removeEventListener('canplaythrough', handler);
+                video.removeEventListener('error', error);
               }
             })
           }
