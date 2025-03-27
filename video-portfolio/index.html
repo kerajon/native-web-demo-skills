@@ -27,6 +27,8 @@
       margin-bottom: 50px;
     }
 
+    /* Portfolio item */
+
     .portfolio-item {
       border-radius: 16px;
       background-color: white;
@@ -59,6 +61,8 @@
       position: relative;
       border-radius: 16px;
     }
+
+    /* Fullscreen button */
 
     .cover-btn {
       position: absolute;
@@ -109,9 +113,98 @@
       display: none;
     }
 
+    /* Notification */
+    .notification {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -100px;
+      padding: 16px;
+      border: 2px solid #ccc;
+      background-color: #3d3d3d;
+      color: #e3e3e3;
+      border-radius: 16px;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+      transition: all 400ms ease-in-out;
+    }
+    .notification.visible {
+      transition: all 400ms ease-in-out;
+      bottom: 40px;
+    }
+    .notification.hidden {
+      transition: all 400ms ease-in-out;
+      bottom: -100px;
+    }
+
+    /* Helpers */
+
     .no-wrap {
       white-space: nowrap;
     }
+
+    /* Animations */
+    .pulse {
+      animation: pulse 1s infinite ease-in-out alternate;
+    }
+    @keyframes pulse {
+      from { transform: scale(0.95); }
+      to { transform: scale(1.1); }
+    }
+
+    .pulse-notification {
+      animation: pulse-notification 1s ease-in-out alternate;
+    }
+    @keyframes pulse-notification {
+      0% {
+        border: 2px solid #ccc;
+        bottom: 40px;
+        color: #e3e3e3;
+      }
+      50% {
+        border: 2px solid #ff3737;
+        bottom: 50px;
+        color: #ee5555;
+      }
+      100% {
+        border: 2px solid #ccc;
+        bottom: 40px;
+        color: #e3e3e3;
+      }
+    }
+
+    .bounce-in {
+      animation: bounce-in 2s ease;
+    }
+    @keyframes bounce-in {
+      0% {
+        opacity: 0;
+        transform: scale(.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% { transform: scale(.9); }
+      100% { transform: scale(1); }
+    }
+
+
+    .bounce-out {
+      animation: bounce-out 2s ease;
+    }
+    @keyframes bounce-out {
+      0% { transform: scale(1); }
+      25% { transform: scale(.95); }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(.3);
+      }
+    }
+
   </style>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -135,7 +228,7 @@
             <span class="fullscreen-btn">
               <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
 
-              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+              <svg class="downloading pulse" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
             </span>
           </div>
         </div>
@@ -151,7 +244,7 @@
             <span class="fullscreen-btn">
               <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
 
-              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+              <svg class="downloading pulse" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
             </span>
           </div>
         </div>
@@ -167,7 +260,7 @@
             <span class="fullscreen-btn">
               <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
 
-              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+              <svg class="downloading pulse" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
             </span>
           </div>
         </div>
@@ -183,28 +276,49 @@
             <span class="fullscreen-btn">
               <svg class="fullscreen" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M120-120v-195.33h66.67v128.66h128.66V-120H120Zm524.67 0v-66.67h128.66v-128.66H840V-120H644.67ZM120-644.67V-840h195.33v66.67H186.67v128.66H120Zm653.33 0v-128.66H644.67V-840H840v195.33h-66.67Z"/></svg>
 
-              <svg class="downloading" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
+              <svg class="downloading pulse" xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#e8eaed"><path d="M338-518q46 0 78.33-32.33 32.34-32.34 32.34-78.34v-104.66h-222v104.66q0 46 32.66 78.34Q292-518 338-518ZM226.67-226.67h222v-106q0-46-32.34-78.33Q384-443.33 338-443.33T259.33-411q-32.66 32.33-32.66 78.33v106ZM100-160v-66.67h60V-332q0-45.93 22.67-85.3 22.66-39.37 61.33-63.37-38.67-24-61.33-62.66Q160-582 160-628v-105.33h-60V-800h475.33v66.67h-60V-628q0 46-22.33 84.67-22.33 38.66-61 62.66 38.67 24 61 63.37t22.33 85.3v105.33h60V-160H100Zm688 0L655.33-292.67l47-46.66L754-287.67V-800h66.67v513.33l52.66-52.66L920-292.67 788-160ZM338-733.33Zm0 506.66Z"/></svg>
             </span>
           </div>
         </div>
       </div>
     </div>
 
+    <div class="notification">
+      Loading video 1 of 4
+    </div>
+
   </div>
 
   <script>
     (() => {
+      const eventBus = eventBusFactory();
+      const notification = notificationController();
       const cartHtmlElements = Array.from(document.querySelector('.portfolio-container').children)
       const carts = [
-        { src: 'website_builder.mp4', type: 'video/mp4', ref: cartHtmlElements[0] },
-        { src: 'Highp_Professional_Video_Presence_app.mp4', type: 'video/mp4', ref: cartHtmlElements[1] },
-        { src: 'apps_and_libraries_for_leasing.mp4', type: 'video/mp4', ref: cartHtmlElements[2] },
-        { src: 'VitalLaw_fomerly_Cheetah_by_Wolters_Kluwer.webm', type: 'video/webm', ref: cartHtmlElements[3] },
+        { no: 1, src: 'website_builder.mp4', type: 'video/mp4', ref: cartHtmlElements[0] },
+        { no: 2, src: 'Highp_Professional_Video_Presence_app.mp4', type: 'video/mp4', ref: cartHtmlElements[1] },
+        { no: 3, src: 'apps_and_libraries_for_leasing.mp4', type: 'video/mp4', ref: cartHtmlElements[2] },
+        { no: 4, src: 'VitalLaw_fomerly_Cheetah_by_Wolters_Kluwer.webm', type: 'video/webm', ref: cartHtmlElements[3] },
       ];
+
+      eventBus.listen('video_loading', function (videoNo) {
+        const isFirstVideoLoading = videoNo === 1;
+        if (isFirstVideoLoading) {
+          notification.show();
+        }
+        notification.setText(`Loading video ${videoNo} of 4`)
+      });
+      eventBus.listen('video_loaded', function (videoNo) {
+        const isLastVideoLoaded = videoNo === 4;
+        if (isLastVideoLoaded) {
+          notification.setText(`All videos loaded`);
+          notification.delayHideFor(2 * 1000);
+        }
+      });
 
       const videoCarts = [];
       for (const cartItem of carts) {
-        const cart = getBtnAndVideo(cartItem);
+        const cart = cartController(cartItem, eventBus);
         const btnController = btnControllerFactory(cart.btn);
         btnController.setLoadingState();
         videoCarts.push(cart);
@@ -227,9 +341,7 @@
 
       runPromisesSequentially(videoCarts.map(function (cart) {
         return cart.startLoading.bind(cart);
-      })).then(function () {
-        console.log('All videos started loading.')
-      });
+      })).then();
 
       let lastFullScreenElement;
       document.addEventListener("fullscreenchange", function () {
@@ -252,7 +364,7 @@
         }, Promise.resolve([])); // Start with a resolved promise
       }
 
-      function getBtnAndVideo(cart) {
+      function cartController(cart, eventBus) {
         const video = cart.ref.querySelector('video');
         const btn = cart.ref.querySelector('.cover-btn');
         return {
@@ -260,7 +372,9 @@
           btn,
           startLoading() {
             return new Promise(function (resolve) {
-              video.addEventListener('loadeddata', handler);
+              eventBus.emit('video_loading', cart.no);
+
+              video.addEventListener('canplaythrough', handler);
 
               const sourceElem = document.createElement('source');
               sourceElem.setAttribute('src', cart.src);
@@ -269,7 +383,8 @@
 
               function handler() {
                 resolve();
-                video.removeEventListener('loadeddata', handler);
+                eventBus.emit('video_loaded', cart.no);
+                video.removeEventListener('canplaythrough', handler);
               }
             })
           }
@@ -281,16 +396,83 @@
           isActive: false,
           isLoading: false,
           setLoadingState() {
-            this.isActive = false;
-            this.isLoading = !this.isActive;
-            btn.classList.add('loading');
-            btn.classList.remove('active');
+            requestAnimationFrame(() => {
+              this.isActive = false;
+              this.isLoading = !this.isActive;
+              btn.classList.add('loading');
+              btn.classList.remove('active');
+            });
           },
           setActiveState() {
-            this.isActive = true;
-            this.isLoading = !this.isActive;
-            btn.classList.remove('loading');
-            btn.classList.add('active');
+            requestAnimationFrame(() => {
+              this.isActive = true;
+              this.isLoading = !this.isActive;
+              btn.classList.remove('loading');
+              btn.classList.add('active');
+            });
+          }
+        };
+      }
+
+      function notificationController() {
+        const notificationRef = document.querySelector('.notification');
+        return {
+          isVisible: false,
+          isHidden: true,
+          show() {
+            requestAnimationFrame(() => {
+              notificationRef.classList.add('visible');
+              notificationRef.classList.remove('hidden');
+              this.isVisible = true;
+              this.isHidden = !this.isVisible;
+            })
+          },
+          hide() {
+            requestAnimationFrame(() => {
+              notificationRef.classList.remove('visible');
+              notificationRef.classList.add('hidden');
+              this.isVisible = true;
+              this.isHidden = !this.isVisible;
+            })
+          },
+          delayHideFor(ms) {
+            setTimeout(() =>
+              this.hide(),
+              ms);
+          },
+          setText(text) {
+            requestAnimationFrame(function () {
+              notificationRef.textContent = text;
+              notificationRef.classList.add('pulse-notification');
+            })
+
+            notificationRef.addEventListener('animationend', animationFinished);
+
+            function animationFinished() {
+              notificationRef.classList.remove('pulse-notification');
+              notificationRef.removeEventListener('animationend', animationFinished);
+            }
+          }
+        };
+      }
+
+      function eventBusFactory() {
+        /** { [eventName: string]: Array<string> } */
+        const registeredEvents = {};
+        return {
+          emit(eventName, data = null) {
+            const hasNoListeners = !registeredEvents[eventName];
+            if (hasNoListeners) {
+              return;
+            }
+            registeredEvents[eventName].forEach(fn => fn(data));
+          },
+          listen(eventName, listenerFn) {
+            const shouldInitListeners = !registeredEvents[eventName];
+            if (shouldInitListeners) {
+              registeredEvents[eventName] = [];
+            }
+            registeredEvents[eventName].push(listenerFn);
           }
         };
       }
